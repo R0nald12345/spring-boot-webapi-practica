@@ -2,7 +2,7 @@
 set -euo pipefail
 
 APP_NAME="spring-boot-app"
-APP_DIR="/opt/spring-boot-app"
+APP_DIR="${APP_DIR:-$HOME/opt/spring-boot-app}"
 JAR_NAME="app.jar"
 JAVA_OPTS="-Xms512m -Xmx1024m"
 SPRING_PROFILE="prod"
@@ -18,6 +18,8 @@ fi
 echo "🚀 Deploying ${APP_NAME}"
 echo "➡️  New artifact: ${NEW_JAR_PATH}"
 
+# Asegurar directorios
+mkdir -p "$APP_DIR/versions" "$APP_DIR/logs"
 cd "$APP_DIR"
 
 # --- Stop running app ---
