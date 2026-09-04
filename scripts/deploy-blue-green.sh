@@ -22,12 +22,13 @@ GREEN_DIR="$BASE_DIR/green"
 JAR_NAME="app.jar"
 
 # Puerto según la instancia
+# ⚠️ Puertos ajustados a tu entorno (Traefik ocupa el 80, Odoo ocupa 8068-8070)
 if [[ "$TARGET_ENV" == "blue" ]]; then
     DEPLOY_DIR="$BLUE_DIR"
-    PORT=8080
+    PORT=8081
 else
     DEPLOY_DIR="$GREEN_DIR"
-    PORT=8081
+    PORT=8082
 fi
 
 echo "=============================================="

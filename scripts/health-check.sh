@@ -5,8 +5,8 @@
 # =============================================================================
 set -euo pipefail
 
-BLUE_PORT=8080
-GREEN_PORT=8081
+BLUE_PORT=8081   # ← ajustado (8080 puede conflictuar con Traefik)
+GREEN_PORT=8082  # ← ajustado
 
 check_instance() {
     local name="$1"
@@ -40,4 +40,4 @@ check_instance "GREEN" "$GREEN_PORT"
 echo "──────────────────────────────────"
 echo ""
 echo "💡 Para ver el tráfico actual de Nginx:"
-echo "   curl http://localhost/api/instance"
+echo "   curl http://localhost:8085/api/instance"

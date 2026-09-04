@@ -13,10 +13,11 @@ if [[ -z "$TARGET" || ( "$TARGET" != "blue" && "$TARGET" != "green" ) ]]; then
     exit 1
 fi
 
+# ⚠️ Puertos ajustados a tu entorno
 if [[ "$TARGET" == "blue" ]]; then
-    PORT=8080
-else
     PORT=8081
+else
+    PORT=8082
 fi
 
 NGINX_CONF="/etc/nginx/sites-available/spring-boot-webapi"
@@ -36,4 +37,4 @@ sudo nginx -s reload
 
 echo ""
 echo "✅ Tráfico redirigido hacia ${TARGET^^}"
-echo "   Verificá con: curl http://localhost/api/instance"
+echo "   Verificá con: curl http://localhost:8085/api/instance"

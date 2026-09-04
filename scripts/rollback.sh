@@ -18,14 +18,15 @@ bash "$(dirname "$0")/switch-traffic.sh" "$STABLE_ENV"
 
 echo ""
 echo "🔍 Verificando que la instancia estable responde..."
+# ⚠️ Puertos ajustados a tu entorno
 if [[ "$STABLE_ENV" == "blue" ]]; then
-    STABLE_PORT=8080
-else
     STABLE_PORT=8081
+else
+    STABLE_PORT=8082
 fi
 
 for i in {1..5}; do
-    RESPONSE=$(curl -s "http://localhost/api/instance" 2>/dev/null || echo '{}')
+    RESPONSE=$(curl -s "http://localhost:8085/api/instance" 2>/dev/null || echo '{}')
     echo "   Request $i → $RESPONSE"
     sleep 1
 done

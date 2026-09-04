@@ -5,11 +5,11 @@
 # =============================================================================
 
 REQUESTS="${1:-20}"
-NGINX_URL="http://localhost/api/instance"
+NGINX_URL="http://localhost:8085/api/instance"  # ← Nginx corre en 8085, no en 80
 
 echo "=============================================="
 echo "🔄 Traffic Test — $REQUESTS requests a Nginx"
-echo "   URL: $NGINX_URL"
+echo "   URL: $NGINX_URL (Nginx en puerto 8085)"
 echo "=============================================="
 echo ""
 
