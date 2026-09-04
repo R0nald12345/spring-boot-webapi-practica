@@ -44,7 +44,7 @@ class InstanceController {
     @org.springframework.beans.factory.annotation.Value("${app.instance.name:BLUE}")
     private String instanceName;
 
-    @org.springframework.beans.factory.annotation.Value("${server.port:8080}")
+    @org.springframework.beans.factory.annotation.Value("${server.port:8081}")
     private String serverPort;
 
     @GetMapping("/api/instance")
