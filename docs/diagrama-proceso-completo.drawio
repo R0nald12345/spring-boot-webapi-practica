@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mxGraphModel dx="1800" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="2000" pageHeight="1350" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- TÍTULO PRINCIPAL -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="title" value="🚀 Pipeline CI/CD + Blue-Green Deployment — Spring Boot WebAPI v1.1.0" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;fontSize=20;fontStyle=1;fontColor=#1a1a2e;" vertex="1" parent="1">
+      <mxGeometry x="250" y="20" width="1400" height="40" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ZONA 1: DESARROLLADOR / LOCAL -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="zone1" value="👨‍💻 DESARROLLADOR — LOCAL" style="swimlane;fontStyle=1;fontSize=12;fillColor=#dae8fc;strokeColor=#6c8ebf;startSize=30;fontColor=#003366;" vertex="1" parent="1">
+      <mxGeometry x="50" y="80" width="330" height="360" as="geometry" />
+    </mxCell>
+
+    <mxCell id="dev1" value="1. Escribir código&#xa;(IntelliJ / VS Code)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=11;fontStyle=1;" vertex="1" parent="zone1">
+      <mxGeometry x="45" y="50" width="240" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="dev2" value="2. git checkout -b feature/add-intance-endpoint&#xa;Crear rama feature" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone1">
+      <mxGeometry x="45" y="135" width="240" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="dev3" value="3. git commit + git push&#xa;origin feature/add-intance-endpoint" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="zone1">
+      <mxGeometry x="45" y="220" width="240" height="50" as="geometry" />
+    </mxCell>
+
+    <!-- Flechas dentro de zona 1 -->
+    <mxCell id="e1" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="dev1" target="dev2" parent="zone1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e2" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="dev2" target="dev3" parent="zone1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ZONA 2: GITHUB -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="zone2" value="🐙 GITHUB REPOSITORY" style="swimlane;fontStyle=1;fontSize=12;fillColor=#f8cecc;strokeColor=#b85450;startSize=30;fontColor=#6d0001;" vertex="1" parent="1">
+      <mxGeometry x="420" y="80" width="330" height="360" as="geometry" />
+    </mxCell>
+
+    <mxCell id="gh1" value="4. Pull Request&#xa;feature → main" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=11;fontStyle=1;" vertex="1" parent="zone2">
+      <mxGeometry x="45" y="50" width="240" height="50" as="geometry" />
+    </mxCell>
+
+    <mxCell id="gh2" value="5. GitHub Actions dispara&#xa;🔁 maven.yml (CI Pipeline)&#xa;en cada push / PR" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="zone2">
+      <mxGeometry x="45" y="130" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="gh3" value="6. Merge a main ✅&#xa;git tag v1.1.0&#xa;git push origin v1.1.0" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="zone2">
+      <mxGeometry x="45" y="220" width="240" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e3" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="gh1" target="gh2" parent="zone2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e4" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="gh2" target="gh3" parent="zone2">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ZONA 3: CI PIPELINE -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="zone3" value="⚙️ PIPELINE CI — maven.yml (GitHub Actions)" style="swimlane;fontStyle=1;fontSize=12;fillColor=#e1d5e7;strokeColor=#9673a6;startSize=30;fontColor=#3d0066;" vertex="1" parent="1">
+      <mxGeometry x="790" y="80" width="330" height="360" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ci1" value="Setup JDK 21" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="zone3">
+      <mxGeometry x="45" y="45" width="240" height="35" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ci2" value="mvn package -DskipTests&#xa;(compilar el JAR)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="zone3">
+      <mxGeometry x="45" y="95" width="240" height="40" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ci3" value="mvn test&#xa;(JUnit 5 — 10 tests)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="zone3">
+      <mxGeometry x="45" y="150" width="240" height="40" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ci4" value="JaCoCo — Reporte cobertura&#xa;Upload artifact HTML" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;" vertex="1" parent="zone3">
+      <mxGeometry x="45" y="205" width="240" height="40" as="geometry" />
+    </mxCell>
+
+    <mxCell id="ciOK" value="✅ CI PASSED" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=11;fontStyle=1;" vertex="1" parent="zone3">
+      <mxGeometry x="65" y="265" width="200" height="35" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e5" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="ci1" target="ci2" parent="zone3"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e6" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="ci2" target="ci3" parent="zone3"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e7" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="ci3" target="ci4" parent="zone3"><mxGeometry relative="1" as="geometry" /></mxCell>
+    <mxCell id="e8" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="ci4" target="ciOK" parent="zone3"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ZONA 4: RELEASE PIPELINE -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="zone4" value="🏷️ PIPELINE RELEASE — release.yml (Disparo: tag v*)" style="swimlane;fontStyle=1;fontSize=12;fillColor=#ffe6cc;strokeColor=#d79b00;startSize=30;fontColor=#663300;" vertex="1" parent="1">
+      <mxGeometry x="1160" y="80" width="340" height="360" as="geometry" />
+    </mxCell>
+
+    <mxCell id="rel1" value="Compilar + empaquetar JAR&#xa;webapi-1.1.0.jar (18 MB)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="zone4">
+      <mxGeometry x="45" y="70" width="250" height="60" as="geometry" />
+    </mxCell>
+
+    <mxCell id="rel2" value="Publicar GitHub Release v1.1.0&#xa;📎 JAR adjunto para descarga" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffd966;strokeColor=#d79b00;fontSize=10;fontStyle=1;" vertex="1" parent="zone4">
+      <mxGeometry x="45" y="180" width="250" height="70" as="geometry" />
+    </mxCell>
+
+    <mxCell id="e9" style="edgeStyle=orthogonalEdgeStyle;" edge="1" source="rel1" target="rel2" parent="zone4"><mxGeometry relative="1" as="geometry" /></mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- LEYENDA -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="legend" value="LEYENDA" style="swimlane;fontStyle=1;fontSize=12;fillColor=#f5f5f5;strokeColor=#666666;startSize=30;" vertex="1" parent="1">
+      <mxGeometry x="1540" y="80" width="280" height="360" as="geometry" />
+    </mxCell>
+
+    <mxCell id="l1" value="Paso de desarrollo" style="rounded=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=10;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="45" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l2" value="GitHub / Repositorio" style="rounded=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=10;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="85" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l3" value="Pipeline CI (Actions)" style="rounded=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=10;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="125" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l4" value="Release / JAR publicado" style="rounded=1;fillColor=#ffe6cc;strokeColor=#d79b00;fontSize=10;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="165" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l5" value="Instancia BLUE :8081" style="rounded=1;fillColor=#0b3d91;strokeColor=#1a73e8;fontSize=10;fontColor=#ffffff;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="205" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l6" value="Instancia GREEN :8082" style="rounded=1;fillColor=#1a5c00;strokeColor=#4d9900;fontSize=10;fontColor=#ffffff;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="245" width="240" height="30" as="geometry" />
+    </mxCell>
+    <mxCell id="l7" value="Fallo / Rollback" style="rounded=1;fillColor=#b85450;strokeColor=#6d0001;fontSize=10;fontColor=#ffffff;" vertex="1" parent="legend">
+      <mxGeometry x="20" y="285" width="240" height="30" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- ZONA 5: DEPLOY WSL — BLUE-GREEN -->
+    <!-- ═══════════════════════════════════════ -->
+    <mxCell id="zone5" value="🖥️ INFRAESTRUCTURA LOCAL — WSL Ubuntu 24.04" style="swimlane;fontStyle=1;fontSize=12;fillColor=#1a1a2e;strokeColor=#0f3460;startSize=30;fontColor=#e94560;" vertex="1" parent="1">
+      <mxGeometry x="50" y="500" width="1770" height="660" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 7: Descargar JAR -->
+    <mxCell id="wsl1" value="7. Descargar JAR de la Release&#xa;curl GitHub Release&#xa;→ ~/blue-green/releases/webapi-1.1.0.jar" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#16213e;strokeColor=#0f3460;fontSize=10;fontColor=#ffffff;" vertex="1" parent="zone5">
+      <mxGeometry x="40" y="60" width="220" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 8: Deploy BLUE -->
+    <mxCell id="wsl2" value="8. deploy-blue-green.sh&#xa;webapi-1.1.0.jar blue&#xa;─────────────────&#xa;Inicia app en :8081&#xa;--app.instance.name=BLUE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0b3d91;strokeColor=#1a73e8;fontSize=10;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="320" y="55" width="220" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 9: Health Check BLUE -->
+    <mxCell id="wsl3" value="9. health-check.sh&#xa;✅ BLUE :8081 HEALTHY" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="330" y="195" width="200" height="75" as="geometry" />
+    </mxCell>
+
+    <!-- NGINX Config -->
+    <mxCell id="nginx" value="🔀 NGINX — Puerto :8085&#xa;─────────────────&#xa;upstream → BLUE :8081&#xa;(proxy_pass http://blue_green)" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#006600;strokeColor=#004d00;fontSize=10;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="640" y="190" width="240" height="85" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 10: Traffic Test 1 -->
+    <mxCell id="wsl4" value="10. traffic-test.sh 10&#xa;BLUE 100% | GREEN 0%&#xa;✅ Todo va a BLUE" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0b3d91;strokeColor=#1a73e8;fontSize=10;fontColor=#ffffff;" vertex="1" parent="zone5">
+      <mxGeometry x="645" y="60" width="230" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 11: Deploy GREEN -->
+    <mxCell id="wsl5" value="11. deploy-blue-green.sh&#xa;webapi-1.1.0.jar green&#xa;─────────────────&#xa;Inicia app en :8082&#xa;--app.instance.name=GREEN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a5c00;strokeColor=#4d9900;fontSize=10;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="970" y="55" width="220" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 12: Health Check GREEN -->
+    <mxCell id="wsl6" value="12. health-check.sh&#xa;✅ GREEN :8082 HEALTHY" style="rhombus;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=10;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="980" y="195" width="200" height="75" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 13: Switch Traffic -->
+    <mxCell id="wsl7" value="13. switch-traffic.sh green&#xa;─────────────────&#xa;Nginx: BLUE :8081&#xa;        ↓&#xa;       GREEN :8082&#xa;⚡ ZERO DOWNTIME" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a5c00;strokeColor=#4d9900;fontSize=10;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="970" y="325" width="220" height="100" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 14: Traffic Test 2 -->
+    <mxCell id="wsl8" value="14. traffic-test.sh 10&#xa;BLUE 0% | GREEN 100%&#xa;✅ Todo va a GREEN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#1a5c00;strokeColor=#4d9900;fontSize=10;fontColor=#ffffff;" vertex="1" parent="zone5">
+      <mxGeometry x="1290" y="335" width="220" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 15: Simular falla GREEN -->
+    <mxCell id="wsl9" value="15. Simular falla GREEN&#xa;kill $(lsof -ti tcp:8082)&#xa;❌ GREEN DOWN" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#b85450;strokeColor=#6d0001;fontSize=10;fontColor=#ffffff;" vertex="1" parent="zone5">
+      <mxGeometry x="1290" y="470" width="220" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 16: Rollback -->
+    <mxCell id="wsl10" value="16. rollback.sh blue&#xa;─────────────────&#xa;switch-traffic.sh blue&#xa;Nginx vuelve a BLUE :8081&#xa;⏪ ROLLBACK EXITOSO" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#6d0001;strokeColor=#b85450;fontSize=10;fontColor=#ffffff;fontStyle=1;" vertex="1" parent="zone5">
+      <mxGeometry x="970" y="465" width="220" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- Paso 17: Verificar rollback -->
+    <mxCell id="wsl11" value="17. traffic-test.sh 10&#xa;BLUE 100% | GREEN 0%&#xa;✅ Sistema estable" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#0b3d91;strokeColor=#1a73e8;fontSize=10;fontColor=#ffffff;" vertex="1" parent="zone5">
+      <mxGeometry x="645" y="470" width="230" height="80" as="geometry" />
+    </mxCell>
+
+    <!-- Usuario final -->
+    <mxCell id="user" value="👤 USUARIO FINAL&#xa;localhost:8085&#xa;(siempre disponible)" style="shape=mxgraph.cisco.computers_and_peripherals.pc;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontColor=#003366;fontStyle=1;fontSize=10;" vertex="1" parent="zone5">
+      <mxGeometry x="700" y="330" width="120" height="90" as="geometry" />
+    </mxCell>
+
+    <!-- FLECHAS dentro de zone5 (Todas directas, sin cruces) -->
+    <!-- 7 -> 8 -->
+    <mxCell id="ew1" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#ffffff;" edge="1" source="wsl1" target="wsl2" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 8 -> 9 -->
+    <mxCell id="ew2" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#ffffff;" edge="1" source="wsl2" target="wsl3" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 9 -> NGINX -->
+    <mxCell id="ew3" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#82b366;" edge="1" source="wsl3" target="nginx" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- NGINX -> 10 -->
+    <mxCell id="ew4" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#1a73e8;" edge="1" source="nginx" target="wsl4" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 10 -> 11 -->
+    <mxCell id="ew5" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#ffffff;" edge="1" source="wsl4" target="wsl5" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 11 -> 12 -->
+    <mxCell id="ew6" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#ffffff;" edge="1" source="wsl5" target="wsl6" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 12 -> 13 -->
+    <mxCell id="ew7" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#82b366;" edge="1" source="wsl6" target="wsl7" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 13 -> 14 -->
+    <mxCell id="ew8" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#4d9900;" edge="1" source="wsl7" target="wsl8" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 14 -> 15 -->
+    <mxCell id="ew9" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#ffffff;" edge="1" source="wsl8" target="wsl9" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 15 -> 16 -->
+    <mxCell id="ew10" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#b85450;" edge="1" source="wsl9" target="wsl10" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- 16 -> 17 -->
+    <mxCell id="ew11" style="edgeStyle=orthogonalEdgeStyle;strokeWidth=2;strokeColor=#1a73e8;" edge="1" source="wsl10" target="wsl11" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <!-- USUARIO -> NGINX (Directo vertical hacia arriba) -->
+    <mxCell id="ew12" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#1a73e8;strokeWidth=3;" edge="1" source="user" target="nginx" parent="zone5">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- ═══════════════════════════════════════ -->
+    <!-- FLECHAS ENTRE ZONAS PRINCIPALES -->
+    <!-- ═══════════════════════════════════════ -->
+
+    <!-- dev3 → gh1 (git push) -->
+    <mxCell id="cross1" value="git push" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#003366;strokeWidth=2;fontStyle=1;fontSize=11;" edge="1" source="dev3" target="gh1" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- gh2 → ci1 (Dispara Actions) -->
+    <mxCell id="cross2" value="Dispara Actions" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#9673a6;strokeWidth=2;fontStyle=1;fontSize=11;" edge="1" source="gh2" target="ci1" parent="1">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+
+    <!-- gh3 → rel1 (tag dispara release, por el corredor libre y=460) -->
+    <mxCell id="cross3" value="tag v1.1.0&#xa;dispara release" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d79b00;strokeWidth=2;fontStyle=1;fontSize=10;" edge="1" source="gh3" target="rel1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="585" y="460" />
+          <mxPoint x="1330" y="460" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+    <!-- rel2 → wsl1 (Descarga JAR, por el corredor libre y=480) -->
+    <mxCell id="cross4" value="curl -L GitHub Release&#xa;Descarga JAR" style="edgeStyle=orthogonalEdgeStyle;strokeColor=#d79b00;strokeWidth=2;fontStyle=1;fontSize=10;" edge="1" source="rel2" target="wsl1" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="1330" y="480" />
+          <mxPoint x="150" y="480" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+
+  </root>
+</mxGraphModel>
